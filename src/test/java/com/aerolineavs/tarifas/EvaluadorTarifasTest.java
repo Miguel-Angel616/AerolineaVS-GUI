@@ -7,6 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EvaluadorTarifasTest {
 
     @Test
+    void servicioPuedeConsumirseMedianteLaInterfaz() {
+        IPricingService servicio = new ServicioTarifas();
+        ClientePotencial cliente = new ClientePotencial(
+                17, 6, TipoViajero.MENOR, ClaseVuelo.TURISTA, RegionDestino.OTRA, 0, false, true
+        );
+
+        assertEquals(Tarifa.PAJARILLO, servicio.evaluar(cliente).tarifa());
+    }
+
+    @Test
     void debeAplicarPajarilloAMenorConSeisVuelos() {
         ClientePotencial cliente = new ClientePotencial(
                 17, 6, TipoViajero.MENOR, ClaseVuelo.TURISTA, RegionDestino.OTRA, 0, false, true
